@@ -1,3 +1,4 @@
+// Input parameters for quadratic equation
 /**
  * @swagger
  * definitions:
@@ -15,13 +16,12 @@
  *       c:
  *         type: number
  */
-//Contains input parameters of quadratic equation
 class NumericCoefficient {
   constructor (a, b, c) {
-    this.a = a;
-    this.b = b;
-    this.c = c;
+    this.a = a
+    this.b = b
+    this.c = c
   }
 }
 
-export {NumericCoefficient};
+export { NumericCoefficient }

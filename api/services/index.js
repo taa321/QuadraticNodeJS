@@ -1,18 +1,18 @@
-//Module dependencies
-import {QuadraticCalculator} from './quadratic-calculator';
+// Module dependencies
+import { QuadraticCalculator } from './quadratic-calculator'
 
-let calculator = null;
+let calculator = null
 
-//Potential factory of calculators using different approaches/algorithms
+// Service factory
 function getInstance (type) {
   if (type === 'quadratic') {
     if (calculator === null) {
-      calculator = new QuadraticCalculator();
+      calculator = new QuadraticCalculator()
     }
-    return calculator;
+    return calculator
   }
-  throw new Error('Unknown calculator type ' + type);
+  throw new Error('Unknown calculator type ' + type)
 }
 
-//Expose calculator instance
-export {getInstance};
+// Expose calculator service instance
+export { getInstance }

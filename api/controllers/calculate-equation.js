@@ -1,12 +1,14 @@
-//Module dependencies
-import {validateModel} from './swagger';
-import * as Calculator from '../services/index.js';
-import {NumericCoefficient} from '../models/numeric-coefficient';
-import express from 'express';
+// Module dependencies
+import { validateModel } from './swagger'
+import * as Calculator from '../services/index.js'
+import { NumericCoefficient } from '../models/numeric-coefficient'
+import express from 'express'
 
-//Initialize quadratic calculator and controller session
-const calculator = Calculator.getInstance('quadratic');
-const router = express.Router();
+// Get calculator service from the factory
+const calculator = Calculator.getInstance('quadratic')
+
+// Controller router
+const router = express.Router()
 
 /**
  * @swagger
@@ -40,14 +42,14 @@ const router = express.Router();
  *           $ref: '#/definitions/QuadraticSolution'
  */
 
-//Calculate quadratic equation using GET
+// Calculate quadratic equation using RESTful HTTP GET
 router.get('/', (req, res, next) => {
-	  const input = new NumericCoefficient(parseInt(req.query.a, 10), parseInt(req.query.b, 10), parseInt(req.query.c, 10));
-	  validateModel('NumericCoefficient', input);
+	  const input = new NumericCoefficient(parseInt(req.query.a, 10), parseInt(req.query.b, 10), parseInt(req.query.c, 10))
+	  validateModel('NumericCoefficient', input)
 	  // need to add a=0 into validation!!!!!
-	  const response = calculator.calculate(input);
-	  validateModel('QuadraticSolution', response);
-      res.send(response);
+	  const response = calculator.calculate(input)
+	  validateModel('QuadraticSolution', response)
+  res.send(response)
 })
 
 /**
@@ -73,13 +75,13 @@ router.get('/', (req, res, next) => {
  *           $ref: '#/definitions/QuadraticSolution'
  */
 
-//Calculate quadratic equation using POST
+// Calculate quadratic equation using RESTful HTTP POST
 router.post('/', (req, res, next) => {
-  validateModel('NumericCoefficient', req.body);
-  const response = calculator.calculate(req.body);
-  validateModel('QuadraticSolution', response);
-  res.send(response);
-});
+  validateModel('NumericCoefficient', req.body)
+  const response = calculator.calculate(req.body)
+  validateModel('QuadraticSolution', response)
+  res.send(response)
+})
 
-//Expose controller session so it can be called in the application
-export { router as calcController};
+// Expose router so it can be called in the application
+export { router as calcControllerRouter }

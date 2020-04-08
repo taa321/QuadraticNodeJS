@@ -1,3 +1,4 @@
+// Output results of quadratic equation
 /**
  * @swagger
  * definitions:
@@ -21,16 +22,14 @@
  *       realPart:
  *         type: number
  */
-
-//Contains the results of quadratic equation calculation
 class QuadraticSolution {
   constructor (rootType, root1, root2, imaginaryPart, realPart) {
-    this.rootType = rootType;
-    this.root1 = root1;
-    this.root2 = root2;
-    this.imaginaryPart = imaginaryPart;
-    this.realPart = realPart;
+    this.rootType = rootType
+    this.root1 = root1
+    this.root2 = root2
+    this.imaginaryPart = imaginaryPart
+    this.realPart = realPart
   }
 }
 
-export {QuadraticSolution};
+export { QuadraticSolution }

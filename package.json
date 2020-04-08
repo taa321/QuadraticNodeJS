@@ -1,0 +1,46 @@
+{
+  "name": "rest-swagger",
+  "version": "1.0.0",
+  "description": "RESTful API for TD technical assignment using Swagger",
+  "private": true,
+  "scripts": {
+    "start": "node -r esm app.js",
+    "test": "mocha -r esm ",
+    "lint": "standard --fix",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
+  },
+  "directories": {
+    "test": "/test"
+  },
+  "dependencies": {
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "jade": "~1.11.0",
+    "morgan": "~1.10.0",
+    "serve-favicon": "~2.4.5",
+    "swagger-jsdoc": "^1.10.3",
+    "swagger-model-validator": "^2.1.11",
+    "swagger-ui-express": "^2.0.7",
+    "snyk": "^1.290.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/register": "^7.4.0",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "chai": "^4.2.0",
+    "esm": "^3.2.25",
+    "mocha": "^7.0.1",
+    "standard": "^10.0.3",
+    "supertest": "^4.0.2"
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  },
+  "snyk": true
+}

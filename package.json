@@ -6,9 +6,7 @@
   "scripts": {
     "start": "node -r esm app.js",
     "test": "mocha -r esm ",
-    "lint": "standard -r esm --fix",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "lint": "standard -r esm --fix"
   },
   "directories": {
     "test": "/test"

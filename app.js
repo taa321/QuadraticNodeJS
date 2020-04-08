@@ -15,23 +15,22 @@ import bodyParser from 'body-parser';
 //Entry point to the quadratic equation calculation
 import { calcController } from './api/controllers/calculate-equation';
 
-//Set of tools to generate interactive API documentation 
-//which is going to be used to try API calls in a browser
-import * as Swagger from './api/controllers/swagger';
+//Entry point to Swagger
+import {swaggerController} from './api/controllers/swagger';
 
-var app = createApp();
+let app = createApp();
 const port = 3000;
 
-//Add the middleware layers
+//Add middleware layers
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/api/calculate-equation', calcController);
-app.use('/api/docs', Swagger.router);
+app.use('/api/docs', swaggerController);
 
-//Add error handling and some special handling for the most common errors 
+//Add very basic error handling and some special handling for the most common errors 
 app.use(function (req, res, next) {
-  var err = new Error('Not Found');
+  let err = new Error('Not Found');
   err.status = 404;
   next(err);
 })

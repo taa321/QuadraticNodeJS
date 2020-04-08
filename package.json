@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node -r esm app.js",
     "test": "mocha -r esm ",
-    "lint": "standard --fix",
+    "lint": "standard -r esm --fix",
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect"
   },
@@ -14,33 +14,22 @@
     "test": "/test"
   },
   "dependencies": {
-    "body-parser": "~1.18.2",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
-    "express": "~4.16.0",
-    "jade": "~1.11.0",
+    "body-parser": "~1.19.0",
+    "cookie-parser": "~1.4.5",
+    "debug": "~4.1.1",
+    "express": "~4.17.1",
     "morgan": "~1.10.0",
-    "serve-favicon": "~2.4.5",
-    "swagger-jsdoc": "^1.10.3",
-    "swagger-model-validator": "^2.1.11",
-    "swagger-ui-express": "^2.0.7",
-    "snyk": "^1.290.1"
+    "swagger-jsdoc": "^4.0.0",
+    "swagger-model-validator": "^3.0.18",
+    "swagger-ui-express": "^4.1.4",
+    "snyk": "^1.305.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/node": "^7.8.7",
-    "@babel/preset-env": "^7.9.0",
-    "@babel/register": "^7.4.0",
-    "babel-cli": "^6.26.0",
-    "babel-eslint": "^7.2.3",
     "chai": "^4.2.0",
     "esm": "^3.2.25",
     "mocha": "^7.0.1",
-    "standard": "^10.0.3",
+    "standard": "^14.3.3",
     "supertest": "^4.0.2"
-  },
-  "standard": {
-    "parser": "babel-eslint"
   },
   "snyk": true
 }

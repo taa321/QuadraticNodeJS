@@ -1,13 +1,12 @@
 //Module dependencies
-import * as Swagger from './swagger';
-//
+import {validateModel} from './swagger';
 import * as Calculator from '../services/index.js';
-import NumericCoefficient from '../models/numeric-coefficient';
-import Express from 'express';
+import {NumericCoefficient} from '../models/numeric-coefficient';
+import express from 'express';
 
+//Initialize quadratic calculator and controller session
 const calculator = Calculator.getInstance('quadratic');
-
-const router = Express.Router();
+const router = express.Router();
 
 /**
  * @swagger
@@ -40,14 +39,15 @@ const router = Express.Router();
  *         schema:
  *           $ref: '#/definitions/QuadraticSolution'
  */
+
+//Calculate quadratic equation using GET
 router.get('/', (req, res, next) => {
 	  const input = new NumericCoefficient(parseInt(req.query.a, 10), parseInt(req.query.b, 10), parseInt(req.query.c, 10));
-	  console.log('input is: ' + req.query.a)
-	  Swagger.validateModel('NumericCoefficient', input)
+	  validateModel('NumericCoefficient', input);
 	  // need to add a=0 into validation!!!!!
-	  const response = calculator.calculate(input)
-	  Swagger.validateModel('QuadraticSolution', response)
-  res.send(response)
+	  const response = calculator.calculate(input);
+	  validateModel('QuadraticSolution', response);
+      res.send(response);
 })
 
 /**
@@ -72,12 +72,14 @@ router.get('/', (req, res, next) => {
  *         schema:
  *           $ref: '#/definitions/QuadraticSolution'
  */
+
+//Calculate quadratic equation using POST
 router.post('/', (req, res, next) => {
-  Swagger.validateModel('NumericCoefficient', req.body)
-  const response = calculator.calculate(req.body)
-  Swagger.validateModel('QuadraticSolution', response)
-  res.send(response)
+  validateModel('NumericCoefficient', req.body);
+  const response = calculator.calculate(req.body);
+  validateModel('QuadraticSolution', response);
+  res.send(response);
 });
 
-//expose the controller so it can be used in application
+//Expose controller session so it can be called in the application
 export { router as calcController};

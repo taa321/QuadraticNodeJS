@@ -40,4 +40,4 @@ class QuadraticCalculator {
 
 // Expose the calculator service so it can be instantiated in a factory and in tests
 export { QuadraticCalculator }
-//
+

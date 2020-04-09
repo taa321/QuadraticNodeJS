@@ -44,11 +44,11 @@ const router = express.Router()
 
 // Calculate quadratic equation using RESTful HTTP GET
 router.get('/', (req, res, next) => {
-	  const input = new NumericCoefficient(parseInt(req.query.a, 10), parseInt(req.query.b, 10), parseInt(req.query.c, 10))
-	  validateModel('NumericCoefficient', input)
-	  // need to add a=0 into validation!!!!!
-	  const response = calculator.calculate(input)
-	  validateModel('QuadraticSolution', response)
+  const input = new NumericCoefficient(parseInt(req.query.a, 10), parseInt(req.query.b, 10), parseInt(req.query.c, 10))
+  validateModel('NumericCoefficient', input)
+  // need to add a=0 into validation!!!!!
+  const response = calculator.calculate(input)
+  validateModel('QuadraticSolution', response)
   res.send(response)
 })
 

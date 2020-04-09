@@ -35,7 +35,8 @@ const options = {
 }
 
 const swaggerSpec = swaggerJSDoc(options)
-const validator = new Validator(swaggerSpec)
+// const validator = new Validator(swaggerSpec)
+Validator(swaggerSpec)
 
 // Publish Swagger specifications
 router.get('/json', function (req, res) {

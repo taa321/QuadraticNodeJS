@@ -71,11 +71,11 @@ function onListening () {
   console.log('\nListening on ' + bind)
 }
 
-// Start the application
-app.listen(port)
+// Start the server
+const server = app.listen(port)
 app.on('error', onError)
 app.on('listening', onListening)
 console.log('Server started on port ' + port)
 
-// Expose the application interface for end point/integration testing
-export { app as application }
+// Expose the application and server for end point/integration testing
+export { app as application, server }

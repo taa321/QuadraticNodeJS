@@ -1,6 +1,6 @@
 // Module dependencies
 import { validateModel } from './swagger'
-import * as Calculator from '../services/index.js'
+import * as Calculator from '../services/calculator-factory.js'
 import { NumericCoefficient } from '../models/numeric-coefficient'
 import express from 'express'
 
@@ -44,10 +44,9 @@ const router = express.Router()
 
 // Calculate quadratic equation using RESTful HTTP GET
 router.get('/', (req, res, next) => {
-  const input = new NumericCoefficient(parseInt(req.query.a, 10), parseInt(req.query.b, 10), parseInt(req.query.c, 10))
-  validateModel('NumericCoefficient', input)
-  // need to add a=0 into validation!!!!!
-  const response = calculator.calculate(input)
+  const calcInput = new NumericCoefficient(parseInt(req.query.a, 10), parseInt(req.query.b, 10), parseInt(req.query.c, 10))
+  validateModel('NumericCoefficient', calcInput)
+  const response = calculator.calculate(calcInput)
   validateModel('QuadraticSolution', response)
   res.send(response)
 })

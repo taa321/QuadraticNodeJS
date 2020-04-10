@@ -8,6 +8,8 @@ class QuadraticCalculator {
     const b = numericCoefficient.b
     const c = numericCoefficient.c
 
+    // All input parameters including "a" != 0 are checked outside at Swagger model validation level
+    // before they are passed here
     const discriminant = b * b - 4 * a * c
 
     let root1 = 0
@@ -16,8 +18,7 @@ class QuadraticCalculator {
     let imaginaryPart = 0
     let rootType = ''
 
-    // Based on the discriminant value apply specific formulas to calculate
-    // solution
+    // Based on the discriminant value apply specific formulas to calculate roots
     if (discriminant > 0) {
       root1 = (-b + Math.sqrt(discriminant)) / (2 * a)
       root2 = (-b - Math.sqrt(discriminant)) / (2 * a)
@@ -30,14 +31,10 @@ class QuadraticCalculator {
       imaginaryPart = Math.sqrt(-discriminant) / (2 * a)
       rootType = 'Complex roots'
     }
-
-    // Put calculation results into the container
     const solution = new QuadraticSolution(rootType, root1, root2, realPart, imaginaryPart)
-
     return solution
   }
 }
 
 // Expose the calculator service so it can be instantiated in a factory and in tests
 export { QuadraticCalculator }
-

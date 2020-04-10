@@ -2,6 +2,7 @@
 import chai from 'chai'
 import { QuadraticCalculator } from '../api/services/quadratic-calculator'
 import { NumericCoefficient } from '../api/models/numeric-coefficient'
+import { validateModel } from '../api/controllers/swagger'
 
 const expect = chai.expect
 const calculator = new QuadraticCalculator()
@@ -43,6 +44,27 @@ describe('Quadratic calculator test', function () {
       expect(result.root2).to.equal(0.5)
       expect(result.imaginaryPart).to.equal(0)
       expect(result.realPart).to.equal(0)
+      done()
+    })
+    it('should make sure "a" is not 0: 0x^2-1x+1=0 and get validation exception', function (done) {
+      numericCoefficient.a = 0
+      numericCoefficient.b = -1
+      numericCoefficient.c = 1
+      expect(function () { validateModel('NumericCoefficient', numericCoefficient) }).to.throw('Model doesn\'t match Swagger contract:a does not match the pattern ^(-|)[^0]*$')
+      done()
+    })
+    it('should make sure "a", "b" and "c" cannot be nulls and get validation exception', function (done) {
+      numericCoefficient.a = null
+      numericCoefficient.b = null
+      numericCoefficient.c = null
+      expect(function () { validateModel('NumericCoefficient', numericCoefficient) }).to.throw('Model doesn\'t match Swagger contract:a is a required field,b is a required field,c is a required field')
+      done()
+    })
+    it('should make sure "a", "b" and "c" cannot contain letters and get validation exception', function (done) {
+      numericCoefficient.a = 'aaa'
+      numericCoefficient.b = 'bbb'
+      numericCoefficient.c = 'ccc'
+      expect(function () { validateModel('NumericCoefficient', numericCoefficient) }).to.throw('Model doesn\'t match Swagger contract:a (aaa) is not a type of number,b (bbb) is not a type of number,c (ccc) is not a type of number')
       done()
     })
   })

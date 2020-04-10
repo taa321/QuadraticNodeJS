@@ -11,6 +11,8 @@
  *     properties:
  *       a:
  *         type: number
+ *         description: Quadratic coefficient A
+ *         pattern: '^(-|)[^0]*$'
  *       b:
  *         type: number
  *       c:
